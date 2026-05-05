@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bnpvmdbhd5ar1"]
+
+[node name="Boot" type="Node2D" unique_id=1624966670]
+
+[node name="Label" type="Label" parent="." unique_id=1159785982]
+offset_left = 592.0
+offset_top = 244.0
+offset_right = 632.0
+offset_bottom = 267.0
+text = "BOOT"

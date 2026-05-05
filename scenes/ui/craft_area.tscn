@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://ejsol612hd44"]
+
+[ext_resource type="Script" uid="uid://dra1q5n5sl28f" path="res://src/ui/craft_area.gd" id="1_r1311"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1311"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+
+[node name="CraftArea" type="PanelContainer" unique_id=363475850]
+custom_minimum_size = Vector2(520, 180)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_r1311")
+script = ExtResource("1_r1311")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1438849838]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Body" type="Control" parent="MarginContainer" unique_id=814730420]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HintLabel" type="Label" parent="MarginContainer/Body" unique_id=656157159]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "DROP ITEMS HERE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemsFlow" type="HFlowContainer" parent="MarginContainer/Body" unique_id=785243053]
+layout_mode = 0
+offset_right = 520.0
+offset_bottom = 180.0
+mouse_filter = 2

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://b1ll7ngfyodbi"]
+
+[ext_resource type="Script" uid="uid://sf4pmeo3kilj" path="res://src/data/item_def.gd" id="1_uinp6"]
+
+[resource]
+script = ExtResource("1_uinp6")
+id = &"gloves"
+name_key = &"gloves"
+stock_max = 20
+metadata/_custom_type_script = "uid://sf4pmeo3kilj"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dyrgqktgo6p2k"]
+
+[ext_resource type="Script" uid="uid://sf4pmeo3kilj" path="res://src/data/item_def.gd" id="1_yih08"]
+
+[resource]
+script = ExtResource("1_yih08")
+id = &"iron_branch"
+name_key = &"iron_branch"
+stock_max = 40
+metadata/_custom_type_script = "uid://sf4pmeo3kilj"

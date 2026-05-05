@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://c4ae5qc4uumds"]
+
+[ext_resource type="Script" uid="uid://sf4pmeo3kilj" path="res://src/data/item_def.gd" id="1_bs0nl"]
+
+[resource]
+script = ExtResource("1_bs0nl")
+id = &"magic_stick"
+name_key = &"magic_stick"
+stock_max = 20
+metadata/_custom_type_script = "uid://sf4pmeo3kilj"

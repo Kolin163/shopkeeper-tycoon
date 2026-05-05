@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="RecipeDef" format=3 uid="uid://butg8albqw7ok"]
+
+[ext_resource type="Script" uid="uid://sf4pmeo3kilj" path="res://src/data/item_def.gd" id="1_nsc58"]
+[ext_resource type="Script" uid="uid://c81sjw2wvv7jk" path="res://src/data/recipe_def.gd" id="2_fktqd"]
+[ext_resource type="Resource" uid="uid://dh3b50r4u6dt6" path="res://data/items/boots.tres" id="2_xevfh"]
+[ext_resource type="Resource" uid="uid://b1ll7ngfyodbi" path="res://data/items/gloves.tres" id="3_kvpfp"]
+[ext_resource type="Resource" uid="uid://bmxtwq3mp8tdo" path="res://data/items/power_treads.tres" id="4_wop16"]
+[ext_resource type="Resource" uid="uid://bhrpsoybkm7bw" path="res://data/items/belt_of_strength.tres" id="6_alf7m"]
+[ext_resource type="Resource" uid="uid://cmie5jbxxn3nf" path="res://data/items/band_of_elvenskin.tres" id="7_vmd7k"]
+[ext_resource type="Resource" uid="uid://cp1ehigt82q3g" path="res://data/items/robe_of_magi.tres" id="8_3xych"]
+
+[resource]
+script = ExtResource("2_fktqd")
+result = ExtResource("4_wop16")
+components = Array[ExtResource("1_nsc58")]([ExtResource("2_xevfh"), ExtResource("3_kvpfp")])
+variant_options = Array[ExtResource("1_nsc58")]([ExtResource("6_alf7m"), ExtResource("7_vmd7k"), ExtResource("8_3xych")])
+requires_variant = true
+metadata/_custom_type_script = "uid://c81sjw2wvv7jk"

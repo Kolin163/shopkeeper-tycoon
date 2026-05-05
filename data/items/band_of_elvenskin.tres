@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cmie5jbxxn3nf"]
+
+[ext_resource type="Script" uid="uid://sf4pmeo3kilj" path="res://src/data/item_def.gd" id="1_rqg6t"]
+
+[resource]
+script = ExtResource("1_rqg6t")
+id = &"band_of_elvenskin"
+name_key = &"band_of_elvenskin"
+stock_max = 20
+metadata/_custom_type_script = "uid://sf4pmeo3kilj"
