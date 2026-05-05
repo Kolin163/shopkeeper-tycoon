@@ -16,6 +16,28 @@ offset_bottom = 40.0
 [node name="DbLabel" type="Label" parent="VBoxContainer" unique_id=283952622]
 layout_mode = 2
 
+[node name="UpgradesPanel" type="PanelContainer" parent="VBoxContainer" unique_id=599321020]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/UpgradesPanel" unique_id=798353815]
+layout_mode = 2
+
+[node name="BtnMoreTables" type="Button" parent="VBoxContainer/UpgradesPanel/VBoxContainer" unique_id=1936819793]
+layout_mode = 2
+
+[node name="BtnMoreStock" type="Button" parent="VBoxContainer/UpgradesPanel/VBoxContainer" unique_id=1358174938]
+layout_mode = 2
+
+[node name="BtnReplenish" type="Button" parent="VBoxContainer/UpgradesPanel/VBoxContainer" unique_id=1662478377]
+layout_mode = 2
+
+[node name="BtnMorePatience" type="Button" parent="VBoxContainer/UpgradesPanel/VBoxContainer" unique_id=1569514366]
+layout_mode = 2
+
+[node name="BtnCloseUpgrades" type="Button" parent="VBoxContainer/UpgradesPanel/VBoxContainer" unique_id=2095685087]
+layout_mode = 2
+
 [node name="TopBar" type="HBoxContainer" parent="VBoxContainer" unique_id=1329944433]
 layout_mode = 2
 
@@ -27,9 +49,16 @@ text = "SHOP"
 layout_mode = 2
 text = "SHOP"
 
+[node name="LevelLabel" type="Label" parent="VBoxContainer/TopBar" unique_id=1789097202]
+layout_mode = 2
+
 [node name="RestockButton" type="Button" parent="VBoxContainer/TopBar" unique_id=716613475]
 layout_mode = 2
 text = "Restock 50g"
+
+[node name="UpgradesButton" type="Button" parent="VBoxContainer/TopBar" unique_id=665899449]
+layout_mode = 2
+text = "Upgrades"
 
 [node name="OrderBar" type="HBoxContainer" parent="VBoxContainer" unique_id=228219625]
 layout_mode = 2

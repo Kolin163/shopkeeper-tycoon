@@ -9,7 +9,7 @@ signal changed
 @onready var items_flow: Control = $MarginContainer/Body/ItemsFlow
 
 var items: Array[ItemDef] = []
-
+var enabled : bool = true
 var _sb_normal: StyleBoxFlat
 var _sb_hot: StyleBoxFlat
 
@@ -40,12 +40,14 @@ func _build_styles() -> void:
 
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	return data is ItemDef
+	return enabled and (data is ItemDef)
 
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var it := data as ItemDef
 	if it == null:
+		return
+	if not enabled:
 		return
 	
 	if DataManager.is_stocked(it.id):
@@ -87,6 +89,16 @@ func remove_one(id: StringName, emit_change: bool = true) -> bool:
 			return true
 	return false
 
+func set_enabled(v: bool) -> void:
+	enabled = v
+	visible = v
+	mouse_filter = Control.MOUSE_FILTER_STOP if v else Control.MOUSE_FILTER_IGNORE
+	if not v:
+		clear_silent()
+
+func clear_silent() -> void:
+	items.clear()
+	_redraw()
 
 func _redraw() -> void:
 	for c in items_flow.get_children():

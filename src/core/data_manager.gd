@@ -27,14 +27,20 @@ func reload_database() -> void:
 
 	var item_files := _load_items_from_dir(items_dir)
 	var recipe_files := _load_recipes_from_dir(recipes_dir)
-
+	
 	for r in recipes_by_result_id.values():
-		all_recipes.sort_custom(func(a: RecipeDef, b: RecipeDef) -> bool:
-			return a.result.cost > b.result.cost
-		)
-
+		var rr := r as RecipeDef
+		if rr != null:
+			all_recipes.append(rr)
+	
+	all_recipes.sort_custom(func(a: RecipeDef, b: RecipeDef) -> bool:
+		var ac := a.result.cost if a != null and a.result != null else 0
+		var bc := b.result.cost if b != null and b.result != null else 0
+		return ac > bc
+	)
+	
 	_build_stock_tables()
-
+	
 	load_report = "DB loaded. Item files: %d, Recipe files: %d, Recipes loaded: %d\nStock items: %d" % [
 		item_files, recipe_files, all_recipes.size(), stock.size()
 	]
@@ -45,14 +51,14 @@ func _build_stock_tables() -> void:
 		var item := it as ItemDef
 		if item == null:
 			continue
-
+	
 		if item.type != &"base":
 			continue
-
+	
 		var maxv := item.stock_max
 		if maxv <= 0:
 			maxv = DEFAULT_STOCK_MAX
-
+	
 		stock_max_by_id[item.id] = maxv
 		stock[item.id] = maxv
 
@@ -132,3 +138,10 @@ func replenish_tick(amount: int = 1) -> void:
 		var s := int(stock.get(id, 0))
 		if s < maxv:
 			stock[id] = min(maxv, s + amount)
+
+func add_stock_capacity_bonus(amount: int) -> void:
+	for id in stock_max_by_id.keys():
+		stock_max_by_id[id] = int(stock_max_by_id[id]) + amount
+		# текущий stock не увеличиваем, только не даём превысить новый max
+		var s := int(stock.get(id, 0))
+		stock[id] = min(int(stock_max_by_id[id]), s)

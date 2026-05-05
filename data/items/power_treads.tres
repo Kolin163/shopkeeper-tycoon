@@ -7,4 +7,5 @@ script = ExtResource("1_lc7yp")
 id = &"power_treads"
 name_key = &"power_treads"
 type = &"upgrade"
+tier = 2
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

@@ -11,6 +11,9 @@ class_name ShelfItem
 func _ready() -> void:
 	_apply_view()
 
+func refresh() -> void:
+	_apply_view()
+
 func _apply_view() -> void:
 	if item == null:
 		bg.color = Color(0.2, 0.2, 0.2, 1.0)
@@ -24,7 +27,7 @@ func _apply_view() -> void:
 	var display := _display_name()
 	tooltip_text = display
 
-	# визуал (иконка или плейсхолдер)
+	# иконка или плейсхолдер
 	if item.icon != null:
 		bg.color = Color(0.08, 0.08, 0.08, 1.0)
 		icon.texture = item.icon
@@ -36,11 +39,9 @@ func _apply_view() -> void:
 		name_label.visible = true
 		name_label.text = display
 
-	# складская логика: считаем складскими только base (или если есть stock_max > 0)
-	var is_stocked := (item.type == &"base") and (item.stock_max != 0 or DataManager.stock.has(item.id))
-
-	if not is_stocked:
-		# бесконечный/не складской
+	# склад
+	if not DataManager.is_stocked(item.id):
+		# не складской (upgrade/recipe_scroll и т.п.)
 		count_label.visible = false
 		modulate = Color.WHITE
 		return
@@ -49,18 +50,15 @@ func _apply_view() -> void:
 	count_label.visible = true
 	count_label.text = str(cnt)
 
-	if cnt <= 0:
-		modulate = Color(0.4, 0.4, 0.4, 1.0)
-	else:
-		modulate = Color.WHITE
+	modulate = Color(0.4, 0.4, 0.4, 1.0) if cnt <= 0 else Color.WHITE
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	if item == null:
 		return null
 
-	# запретить drag, если это складской base и он закончился
-	var is_stocked := (item.type == &"base") and (item.stock_max != 0 or DataManager.is_stocked(item.id))
-	if is_stocked and DataManager.get_stock(item.id) <= 0:
+	# единое правило: если stock закончился — нельзя тащить.
+	# для нескладских has_stock() вернёт true, и drag будет разрешён.
+	if not DataManager.has_stock(item.id):
 		return null
 
 	set_drag_preview(_make_drag_preview())
