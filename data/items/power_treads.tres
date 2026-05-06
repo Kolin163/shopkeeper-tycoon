@@ -8,4 +8,5 @@ id = &"power_treads"
 name_key = &"power_treads"
 type = &"upgrade"
 tier = 2
+cost = 10
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

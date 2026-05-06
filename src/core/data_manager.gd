@@ -34,9 +34,11 @@ func reload_database() -> void:
 			all_recipes.append(rr)
 	
 	all_recipes.sort_custom(func(a: RecipeDef, b: RecipeDef) -> bool:
-		var ac := a.result.cost if a != null and a.result != null else 0
-		var bc := b.result.cost if b != null and b.result != null else 0
-		return ac > bc
+		var ac := a.result.cost
+		var bc := b.result.cost
+		if ac != bc:
+			return ac > bc
+		return String(a.result.id) < String(b.result.id)
 	)
 	
 	_build_stock_tables()

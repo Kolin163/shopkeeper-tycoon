@@ -6,5 +6,6 @@
 script = ExtResource("1_acths")
 id = &"robe_of_magi"
 name_key = &"robe_of_magi"
+cost = 1
 stock_max = 20
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

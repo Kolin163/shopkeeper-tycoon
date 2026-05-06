@@ -6,5 +6,6 @@
 script = ExtResource("1_s7kpy")
 id = &"boots"
 name_key = &"boots"
+cost = 1
 stock_max = 20
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

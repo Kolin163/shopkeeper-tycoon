@@ -7,4 +7,5 @@ script = ExtResource("1_e2c51")
 id = &"magic_wand"
 name_key = &"magic_wand"
 type = &"upgrade"
+cost = 5
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

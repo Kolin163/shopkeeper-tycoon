@@ -6,5 +6,6 @@
 script = ExtResource("1_fui1y")
 id = &"belt_of_strength"
 name_key = &"belt_of_strength"
+cost = 1
 stock_max = 20
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

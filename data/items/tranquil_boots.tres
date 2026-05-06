@@ -7,4 +7,5 @@ script = ExtResource("1_7cp6y")
 id = &"tranquil_boots"
 name_key = &"tranquil_boots"
 type = &"upgrade"
+cost = 5
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

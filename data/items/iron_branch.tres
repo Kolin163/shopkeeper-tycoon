@@ -6,5 +6,6 @@
 script = ExtResource("1_yih08")
 id = &"iron_branch"
 name_key = &"iron_branch"
+cost = 1
 stock_max = 40
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

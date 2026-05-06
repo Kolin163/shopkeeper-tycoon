@@ -6,5 +6,6 @@
 script = ExtResource("1_uinp6")
 id = &"gloves"
 name_key = &"gloves"
+cost = 1
 stock_max = 20
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

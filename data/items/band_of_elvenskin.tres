@@ -6,5 +6,6 @@
 script = ExtResource("1_rqg6t")
 id = &"band_of_elvenskin"
 name_key = &"band_of_elvenskin"
+cost = 1
 stock_max = 20
 metadata/_custom_type_script = "uid://sf4pmeo3kilj"

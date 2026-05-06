@@ -38,7 +38,45 @@ layout_mode = 2
 [node name="BtnCloseUpgrades" type="Button" parent="VBoxContainer/UpgradesPanel/VBoxContainer" unique_id=2095685087]
 layout_mode = 2
 
+[node name="DayBreakPanel" type="PanelContainer" parent="VBoxContainer" unique_id=1615453468]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DayBreakPanel" unique_id=1519955206]
+layout_mode = 2
+
+[node name="BreakTitle" type="Label" parent="VBoxContainer/DayBreakPanel/VBoxContainer" unique_id=474481491]
+layout_mode = 2
+text = "Day break"
+
+[node name="StartDayButton" type="Button" parent="VBoxContainer/DayBreakPanel/VBoxContainer" unique_id=1587329944]
+layout_mode = 2
+text = "Start day"
+
+[node name="EndDayPanel" type="PanelContainer" parent="VBoxContainer" unique_id=481221814]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/EndDayPanel" unique_id=684073356]
+layout_mode = 2
+
+[node name="EndSummaryLabel" type="Label" parent="VBoxContainer/EndDayPanel/VBoxContainer" unique_id=24849114]
+layout_mode = 2
+text = "Day break"
+
+[node name="ToBreakButton" type="Button" parent="VBoxContainer/EndDayPanel/VBoxContainer" unique_id=994800817]
+layout_mode = 2
+text = "Continue"
+
 [node name="TopBar" type="HBoxContainer" parent="VBoxContainer" unique_id=1329944433]
+layout_mode = 2
+
+[node name="DayLabel" type="Label" parent="VBoxContainer/TopBar" unique_id=326132921]
+layout_mode = 2
+
+[node name="DayModLabel" type="Label" parent="VBoxContainer/TopBar" unique_id=1760696941]
+layout_mode = 2
+
+[node name="DayTimerLabel" type="Label" parent="VBoxContainer/TopBar" unique_id=2127202714]
 layout_mode = 2
 
 [node name="GoldLabel" type="Label" parent="VBoxContainer/TopBar" unique_id=1734463266]
@@ -91,6 +129,22 @@ text = "SHOP"
 [node name="ClearButton" type="Button" parent="VBoxContainer/OrderBar" unique_id=968231078]
 layout_mode = 2
 text = "Clear table"
+
+[node name="BargainRow" type="HBoxContainer" parent="VBoxContainer/OrderBar" unique_id=596408771]
+visible = false
+layout_mode = 2
+
+[node name="BargainLabel" type="Label" parent="VBoxContainer/OrderBar/BargainRow" unique_id=386159488]
+layout_mode = 2
+text = "Discount?"
+
+[node name="BtnDeal" type="Button" parent="VBoxContainer/OrderBar/BargainRow" unique_id=153656838]
+layout_mode = 2
+text = "Yes"
+
+[node name="BtnNoDeal" type="Button" parent="VBoxContainer/OrderBar/BargainRow" unique_id=887162681]
+layout_mode = 2
+text = "No"
 
 [node name="CraftRow" type="HBoxContainer" parent="VBoxContainer" unique_id=1996415459]
 layout_mode = 2
