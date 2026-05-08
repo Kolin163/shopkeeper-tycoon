@@ -1,22 +1,12 @@
-class_name DayModifier
+class_name DayModifiers
 extends RefCounted
 
-var id: StringName
-var title: String
-var desc: String
-
-var patience_mult: float = 1.0
-var pay_mult: float = 1.0
-var queue_drain_mult: float = 1.0
-var night_supply_mult: float = 1.0
-
-# веса архетипов (сумма не обязана быть 100)
-var w_normal: int = 45
-var w_haggler: int = 20
-var w_rusher: int = 20
-var w_generous: int = 15
+static var _cache: Array[DayModifier] = []
 
 static func list() -> Array[DayModifier]:
+	if not _cache.is_empty():
+		return _cache
+
 	var a: Array[DayModifier] = []
 
 	# 1) Rush Hour
@@ -49,12 +39,12 @@ static func list() -> Array[DayModifier]:
 	m.pay_mult = 0.95
 	a.append(m)
 
-	# 4) Supply Issues (влияет на ночную поставку)
+	# 4) Supply Issues
 	m = DayModifier.new()
 	m.id = &"supply_issues"
 	m.title = "Supply Issues"
 	m.desc = "Night supply reduced"
-	m.night_supply_mult = 0.6
+	m.night_supply_mult = 0.60
 	m.pay_mult = 1.05
 	a.append(m)
 
@@ -66,26 +56,36 @@ static func list() -> Array[DayModifier]:
 	m.w_generous += 30
 	a.append(m)
 
-	return a
+	_cache = a
+	return _cache
 
 static func pick() -> DayModifier:
 	var l := list()
+	if l.is_empty():
+		return DayModifier.new()
 	return l[randi() % l.size()]
 
 static func pick_archetype(mod: DayModifier) -> int:
-	# Weighted random: NORMAL/HAGGLER/RUSHER/GENEROUS
-	var total := mod.w_normal + mod.w_haggler + mod.w_rusher + mod.w_generous
-	var roll = randi() % max(total, 1)
+	var w_h = max(0, mod.w_haggler)
+	var w_r = max(0, mod.w_rusher)
+	var w_g = max(0, mod.w_generous)
+	var w_n = max(0, mod.w_normal)
 
-	if roll < mod.w_haggler:
+	var total = w_n + w_h + w_r + w_g
+	if total <= 0:
+		return HeroArchetypes.Type.NORMAL
+
+	var roll = randi() % total
+
+	if roll < w_h:
 		return HeroArchetypes.Type.HAGGLER
-	roll -= mod.w_haggler
+	roll -= w_h
 
-	if roll < mod.w_rusher:
+	if roll < w_r:
 		return HeroArchetypes.Type.RUSHER
-	roll -= mod.w_rusher
+	roll -= w_r
 
-	if roll < mod.w_generous:
+	if roll < w_g:
 		return HeroArchetypes.Type.GENEROUS
 
 	return HeroArchetypes.Type.NORMAL

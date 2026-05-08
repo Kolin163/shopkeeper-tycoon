@@ -31,6 +31,8 @@ func on_delivered() -> bool:
 func pick_order_id() -> StringName:
 	if unlocked_orders.is_empty():
 		rebuild_unlocked_orders()
+	if unlocked_orders.is_empty():
+		return StringName()
 	return unlocked_orders[randi() % unlocked_orders.size()]
 
 func rebuild_unlocked_orders() -> void:
@@ -54,7 +56,10 @@ func _is_unlocked_item(id: StringName) -> bool:
 func _is_base_available(id: StringName) -> bool:
 	return shelf_ids.has(id) and _is_unlocked_item(id)
 
-func _can_craft_at_level(id: StringName, stack: Array[StringName] = []) -> bool:
+func _can_craft_at_level(id: StringName) -> bool:
+	return _can_craft_at_level_impl(id, [])
+
+func _can_craft_at_level_impl(id: StringName, stack: Array[StringName]) -> bool:
 	if _craftable_cache.has(id):
 		return bool(_craftable_cache[id])
 
@@ -80,7 +85,7 @@ func _can_craft_at_level(id: StringName, stack: Array[StringName] = []) -> bool:
 	stack.append(id)
 
 	for c in r.components:
-		if c == null or not _can_craft_at_level(c.id, stack):
+		if c == null or not _can_craft_at_level_impl(c.id, stack):
 			stack.pop_back()
 			_craftable_cache[id] = false
 			return false
@@ -88,7 +93,7 @@ func _can_craft_at_level(id: StringName, stack: Array[StringName] = []) -> bool:
 	if r.requires_variant:
 		var any_ok := false
 		for opt in r.variant_options:
-			if opt != null and _can_craft_at_level(opt.id, stack):
+			if opt != null and _can_craft_at_level_impl(opt.id, stack):
 				any_ok = true
 				break
 		if not any_ok:

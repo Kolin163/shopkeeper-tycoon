@@ -45,3 +45,10 @@ static func say_order(t: int) -> String:
 		Type.RUSHER:   return "Быстро! У меня файт!"
 		Type.GENEROUS: return "Если успеешь — будут чаевые."
 		_:             return "Мне нужен артефакт."
+
+static func order_line_key(t: int) -> StringName:
+	match t:
+		Type.HAGGLER:  return &"line.haggler_order"
+		Type.RUSHER:   return &"line.rusher_order"
+		Type.GENEROUS: return &"line.generous_order"
+		_:             return &"line.normal_order"

@@ -2,7 +2,10 @@ extends Control
 class_name ShelfItem
 
 @export var item: ItemDef
+enum HintState { NONE, REQUIRED, VARIANT }
 
+var hint_state: int = HintState.NONE
+@onready var hint_overlay: ColorRect = $HintOverlay
 @onready var bg: ColorRect = $Bg
 @onready var icon: TextureRect = $Icon
 @onready var name_label: Label = $NameLabel
@@ -13,6 +16,11 @@ func _ready() -> void:
 
 func refresh() -> void:
 	_apply_view()
+	_update_hint_overlay()
+
+func set_hint_state(state: int) -> void:
+	hint_state = state
+	_update_hint_overlay()
 
 func _apply_view() -> void:
 	if item == null:
@@ -51,6 +59,20 @@ func _apply_view() -> void:
 	count_label.text = str(cnt)
 
 	modulate = Color(0.4, 0.4, 0.4, 1.0) if cnt <= 0 else Color.WHITE
+
+func _update_hint_overlay() -> void:
+	if hint_overlay == null:
+		return
+
+	match hint_state:
+		HintState.NONE:
+			hint_overlay.visible = false
+		HintState.REQUIRED:
+			hint_overlay.visible = true
+			hint_overlay.color = Color(0.2, 1.0, 0.2, 0.20) # зелёный
+		HintState.VARIANT:
+			hint_overlay.visible = true
+			hint_overlay.color = Color(0.2, 0.6, 1.0, 0.20) # синий
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	if item == null:

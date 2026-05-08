@@ -90,6 +90,9 @@ text = "SHOP"
 [node name="LevelLabel" type="Label" parent="VBoxContainer/TopBar" unique_id=1789097202]
 layout_mode = 2
 
+[node name="PrepsLabel" type="Label" parent="VBoxContainer/TopBar" unique_id=1140499082]
+layout_mode = 2
+
 [node name="RestockButton" type="Button" parent="VBoxContainer/TopBar" unique_id=716613475]
 layout_mode = 2
 text = "Restock 50g"
@@ -107,6 +110,9 @@ layout_mode = 2
 [node name="OrderLabel" type="Label" parent="VBoxContainer/OrderBar" unique_id=1332260787]
 layout_mode = 2
 text = "SHOP"
+
+[node name="HintLabel" type="Label" parent="VBoxContainer/OrderBar" unique_id=1557909002]
+layout_mode = 2
 
 [node name="NeedLabel" type="Label" parent="VBoxContainer/OrderBar" unique_id=1386659752]
 layout_mode = 2

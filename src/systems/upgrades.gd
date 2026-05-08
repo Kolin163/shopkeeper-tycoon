@@ -47,3 +47,6 @@ func inc_replenish() -> void:
 func inc_patience() -> void:
 	patience_level += 1
 	changed.emit()
+
+func night_supply_bonus() -> int:
+	return replenish_level

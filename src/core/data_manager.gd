@@ -34,17 +34,19 @@ func reload_database() -> void:
 			all_recipes.append(rr)
 	
 	all_recipes.sort_custom(func(a: RecipeDef, b: RecipeDef) -> bool:
-		var ac := a.result.cost
-		var bc := b.result.cost
+		var ac := (a.result.cost if a != null and a.result != null else 0)
+		var bc := (b.result.cost if b != null and b.result != null else 0)
 		if ac != bc:
 			return ac > bc
-		return String(a.result.id) < String(b.result.id)
+		var aid := (String(a.result.id) if a != null and a.result != null else "")
+		var bid := (String(b.result.id) if b != null and b.result != null else "")
+		return aid < bid
 	)
 	
 	_build_stock_tables()
 	
-	load_report = "DB loaded. Item files: %d, Recipe files: %d, Recipes loaded: %d\nStock items: %d" % [
-		item_files, recipe_files, all_recipes.size(), stock.size()
+	load_report = "DB loaded. Item files: %d, Recipe files: %d, Items: %d, Recipes: %d, Stock items: %d" % [
+		item_files, recipe_files, items_by_id.size(), all_recipes.size(), stock.size()
 	]
 
 func _build_stock_tables() -> void:
@@ -111,6 +113,11 @@ func is_stocked(id: StringName) -> bool:
 func get_stock(id: StringName) -> int:
 	return int(stock.get(id, 0))
 
+func get_stock_max(id: StringName) -> int:
+	if not is_stocked(id):
+		return 0
+	return int(stock_max_by_id[id])
+
 func get_stock_for_ui(id: StringName) -> int:
 	if not is_stocked(id):
 		return -1 # значит "∞"
@@ -147,3 +154,24 @@ func add_stock_capacity_bonus(amount: int) -> void:
 		# текущий stock не увеличиваем, только не даём превысить новый max
 		var s := int(stock.get(id, 0))
 		stock[id] = min(int(stock_max_by_id[id]), s)
+
+func add_stock(id: StringName, amount: int = 1) -> void:
+	if not is_stocked(id):
+		return
+	var maxv := int(stock_max_by_id[id])
+	var s := int(stock.get(id, 0))
+	stock[id] = clampi(s + amount, 0, maxv)
+
+func get_stock_state() -> Dictionary:
+	var d: Dictionary = {}
+	for id in stock.keys():
+		d[String(id)] = int(stock[id])
+	return d
+
+func set_stock_state(d: Dictionary) -> void:
+	for k in d.keys():
+		var id := StringName(String(k))
+		if not is_stocked(id):
+			continue
+		var maxv := int(stock_max_by_id[id])
+		stock[id] = clampi(int(d[k]), 0, maxv)

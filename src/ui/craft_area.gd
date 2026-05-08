@@ -9,7 +9,7 @@ signal changed
 @onready var items_flow: Control = $MarginContainer/Body/ItemsFlow
 
 var items: Array[ItemDef] = []
-var enabled : bool = true
+var enabled: bool = true
 var _sb_normal: StyleBoxFlat
 var _sb_hot: StyleBoxFlat
 
@@ -90,6 +90,8 @@ func remove_one(id: StringName, emit_change: bool = true) -> bool:
 	return false
 
 func set_enabled(v: bool) -> void:
+	if enabled == v:
+		return
 	enabled = v
 	visible = v
 	mouse_filter = Control.MOUSE_FILTER_STOP if v else Control.MOUSE_FILTER_IGNORE
@@ -97,8 +99,26 @@ func set_enabled(v: bool) -> void:
 		clear_silent()
 
 func clear_silent() -> void:
+	if items.is_empty():
+		return
 	items.clear()
 	_redraw()
+
+func take_all_items(silent: bool = true) -> Array[ItemDef]:
+	var out := items.duplicate()
+	items.clear()
+	_redraw()
+	if not silent:
+		changed.emit()
+	return out
+
+func put_items(arr: Array[ItemDef], silent: bool = true) -> void:
+	for it in arr:
+		if it != null:
+			items.append(it)
+	_redraw()
+	if not silent:
+		changed.emit()
 
 func _redraw() -> void:
 	for c in items_flow.get_children():
