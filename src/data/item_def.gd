@@ -4,6 +4,7 @@ extends Resource
 @export var id: StringName
 @export var name_key: StringName # пример: &"item.power_treads"
 @export var type: StringName = &"base" # base / upgrade / recipe_scroll
+@export var category: StringName = &"misc"
 @export var tier: int = 1
 @export var cost: int = 0
 @export var icon: Texture2D

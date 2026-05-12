@@ -1,0 +1,12 @@
+{
+  "power_treads": {
+	"components": ["boots_of_speed", "gloves_of_haste"],
+	"requires_variant": true,
+	"variant_options": ["belt_of_strength", "robe_of_the_magi", "band_of_elvenskin"]
+  },
+  "magic_wand": {
+	"components": ["magic_stick", "iron_branch", "iron_branch"],
+	"requires_variant": false,
+	"variant_options": []
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "boots_of_speed": {
+	"name_key": "item.boots_of_speed",
+	"category": "movement",
+	"type": "base",
+	"tier": 1,
+	"cost": 500,
+	"stock_max": 5,
+	"icon": ""
+  },
+"gloves_of_haste": {
+	"name_key": "item.gloves_of_haste",
+	"category": "movement",
+	"type": "base",
+	"tier": 1,
+	"cost": 500,
+	"stock_max": 5,
+	"icon": ""
+  },
+"band_of_elvenskin": {
+	"name_key": "item.band_of_elvenskin",
+	"category": "movement",
+	"type": "base",
+	"tier": 1,
+	"cost": 450,
+	"stock_max": 5,
+	"icon": ""
+  },
+"belt_of_strength": {
+	"name_key": "item.belt_of_strength",
+	"category": "movement",
+	"type": "base",
+	"tier": 1,
+	"cost": 450,
+	"stock_max": 5,
+	"icon": ""
+  },
+"robe_of_the_magi": {
+	"name_key": "item.robe_of_the_magi",
+	"category": "movement",
+	"type": "base",
+	"tier": 1,
+	"cost": 450,
+	"stock_max": 5,
+	"icon": ""
+  },
+  "power_treads": {
+	"name_key": "item.power_treads",
+	"category": "movement",
+	"type": "upgrade",
+	"tier": 2,
+	"cost": 1400,
+	"stock_max": 0,
+	"icon": ""
+  }
+}

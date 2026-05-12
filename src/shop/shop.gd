@@ -38,7 +38,9 @@ enum GamePhase { DAY_BREAK, DAY_ACTIVE, DAY_END }
 @onready var btn_no_deal: Button = $VBoxContainer/OrderBar/BargainRow/BtnNoDeal
 
 @onready var craft_row: HBoxContainer = $VBoxContainer/CraftRow
-@onready var shelf_flow: Control = $VBoxContainer/ShelfFlow
+@onready var search_edit: LineEdit = $VBoxContainer/ShelfPanel/ShelfHeader/SearchEdit
+@onready var category_option: OptionButton = $VBoxContainer/ShelfPanel/ShelfHeader/CategoryOption
+@onready var shelf_grid: GridContainer = $VBoxContainer/ShelfPanel/ShelfScroll/ShelfGrid
 
 @onready var day_break_panel: PanelContainer = $VBoxContainer/DayBreakPanel
 @onready var start_day_button: Button = $VBoxContainer/DayBreakPanel/VBoxContainer/StartDayButton
@@ -104,7 +106,7 @@ var preps: Array[ItemDef] = []
 var bargain_active := false
 var bargain_discount_mult := 1.0
 var bargain_patience_bonus := 0.0
-
+var _cat_index_to_id: Dictionary = {} # int -> StringName
 # -----------------------------
 # Content (MVP)
 # -----------------------------
@@ -115,10 +117,10 @@ var order_pool: Array[StringName] = [
 ]
 
 var shelf_ids: Array[StringName] = [
-	&"boots",
-	&"gloves",
+	&"boots_of_speed",
+	&"gloves_of_haste",
 	&"belt_of_strength",
-	&"robe_of_magi",
+	&"robe_of_the_magi",
 	&"band_of_elvenskin",
 	&"magic_stick",
 	&"iron_branch",
@@ -164,14 +166,15 @@ func _ready() -> void:
 	btn_no_deal.pressed.connect(_reject_bargain)
 
 	# init world
-	_build_shelf()
 	_collect_craft_areas()
 	_apply_tables()
-
+	_setup_shelf_catalog_ui()
+	_rebuild_shelf_catalog()
+	
 	# progression
 	progression.setup(order_pool, shelf_ids)
 	progression.level_changed.connect(func(_lvl: int) -> void:
-		_build_shelf()
+		_rebuild_shelf_catalog()
 		_update_shelf_badges()
 		_refresh_upgrades_ui()
 	)
@@ -464,24 +467,70 @@ func _apply_tables() -> void:
 	for i in range(craft_areas.size()):
 		craft_areas[i].set_enabled(i < n)
 
-func _build_shelf() -> void:
-	for c in shelf_flow.get_children():
+func _rebuild_shelf_catalog() -> void:
+	var sel_idx := category_option.get_selected()
+	var sel_cat: StringName = _cat_index_to_id.get(sel_idx, &"__all__")
+	# очистка грида
+	for c in shelf_grid.get_children():
 		c.queue_free()
 	shelf_items.clear()
 
+	var query := search_edit.text.strip_edges().to_lower()
+	var cat := category_option.get_selected_id()
+
+	# соберём список кандидатов
+	var candidates: Array[ItemDef] = []
+	for it in DataManager.items_by_id.values():
+		var item := it as ItemDef
+		if item == null:
+			continue
+		
+		if sel_cat != &"__all__" and item.category != sel_cat:
+			continue
+		
+		# показываем только то, что игрок может "взять руками" с полки
+		if item.type != &"base" and item.type != &"recipe_scroll":
+			continue
+
+		# прогрессия
+		if item.tier > progression.shop_level:
+			continue
+
+		# категории v1
+		if cat == 1 and item.type != &"base":
+			continue
+		if cat == 2 and item.type != &"recipe_scroll":
+			continue
+
+		# поиск: по локализованному имени, fallback на id
+		if not query.is_empty():
+			var name := tr(String(item.name_key)).to_lower()
+			var id_s := String(item.id).to_lower()
+			if name.find(query) == -1 and id_s.find(query) == -1:
+				continue
+
+		candidates.append(item)
+
+	# сортировка v1: сначала то, что есть на складе, потом по cost, потом по id
+	candidates.sort_custom(func(a: ItemDef, b: ItemDef) -> bool:
+		var a_has := DataManager.has_stock(a.id)
+		var b_has := DataManager.has_stock(b.id)
+		if a_has != b_has:
+			return a_has and not b_has
+		if a.cost != b.cost:
+			return a.cost < b.cost
+		return String(a.id) < String(b.id)
+	)
+
 	var shelf_item_scene := preload("res://scenes/ui/shelf_item.tscn")
-
-	for id in shelf_ids:
-		var def := DataManager.get_item(id)
-		if def == null:
-			continue
-		if def.tier > progression.shop_level:
-			continue
-
+	for item in candidates:
 		var node := shelf_item_scene.instantiate() as ShelfItem
-		node.item = def
-		shelf_flow.add_child(node)
+		node.item = item
+		shelf_grid.add_child(node)
 		shelf_items.append(node)
+
+	# после перестройки сразу обновим бейджи
+	_update_shelf_badges()
 
 func _update_shelf_badges() -> void:
 	for shelf in shelf_items:
@@ -491,6 +540,48 @@ func _update_shelf_badges() -> void:
 			else:
 				shelf._apply_view()
 
+func _setup_shelf_catalog_ui() -> void:
+	_cat_index_to_id.clear()
+	category_option.clear()
+
+	# 0) All
+	category_option.add_item("All")
+	_cat_index_to_id[0] = &"__all__"
+
+	# Собираем категории из данных (только то, что может быть на полке)
+	var cats: Dictionary = {} # StringName -> true
+	for it in DataManager.items_by_id.values():
+		var item := it as ItemDef
+		if item == null:
+			continue
+		if item.type != &"base" and item.type != &"recipe_scroll":
+			continue
+		cats[item.category] = true
+
+	# Сортируем
+	var cat_list: Array[StringName] = []
+	for k in cats.keys():
+		cat_list.append(k)
+	cat_list.sort_custom(func(a: StringName, b: StringName) -> bool:
+		return String(a) < String(b)
+	)
+
+	# Добавляем в OptionButton
+	for cat_id in cat_list:
+		var idx := category_option.item_count
+		category_option.add_item(_cat_title(cat_id))
+		_cat_index_to_id[idx] = cat_id
+
+	search_edit.text_changed.connect(func(_t: String) -> void:
+		_rebuild_shelf_catalog()
+	)
+	category_option.item_selected.connect(func(_idx: int) -> void:
+		_rebuild_shelf_catalog()
+	)
+
+func _cat_title(cat_id: StringName) -> String:
+	# v1: просто показываем id, можно сделать красивее/локализовать позже
+	return String(cat_id)
 # -----------------------------
 # Delivery / Need label
 # -----------------------------
@@ -1002,7 +1093,7 @@ func _apply_save_dict(s: Dictionary) -> void:
 
 	# применяем эффекты на сцену
 	_apply_tables()
-	_build_shelf()
+	_rebuild_shelf_catalog()
 	_update_shelf_badges()
 	_refresh_upgrades_ui()
 

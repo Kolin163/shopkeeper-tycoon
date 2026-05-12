@@ -1,3 +1,15 @@
 [gd_scene format=3 uid="uid://cldxoucnncx2n"]
 
+[ext_resource type="Script" uid="uid://m60xoohu07md" path="res://src/tools/data_validation_runner.gd" id="1_wf0yt"]
+
 [node name="DataValidationRunner" type="Node" unique_id=1505632705]
+script = ExtResource("1_wf0yt")
+last_report = "VALIDATION REPORT
+Items loaded: 0
+Recipes loaded: 0
+Unique item ids: 0
+Recipes by result: 0
+Errors: 0
+Warnings: 0
+
+OK: no issues found."

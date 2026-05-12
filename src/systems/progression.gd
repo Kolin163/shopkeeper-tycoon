@@ -54,7 +54,8 @@ func _is_unlocked_item(id: StringName) -> bool:
 	return it != null and it.tier <= shop_level
 
 func _is_base_available(id: StringName) -> bool:
-	return shelf_ids.has(id) and _is_unlocked_item(id)
+	var it := DataManager.get_item(id)
+	return it != null and (it.type == &"base" or it.type == &"recipe_scroll") and it.tier <= shop_level
 
 func _can_craft_at_level(id: StringName) -> bool:
 	return _can_craft_at_level_impl(id, [])
