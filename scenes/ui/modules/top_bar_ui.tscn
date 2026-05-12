@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bvwkmelu30b6r"]
+
+[ext_resource type="Script" uid="uid://bsu1xar5acngr" path="res://src/ui/modules/top_bar_ui.gd" id="1_pvxli"]
+
+[node name="TopBarUI" type="HBoxContainer" unique_id=245883689]
+script = ExtResource("1_pvxli")
+
+[node name="DayLabel" type="Label" parent="." unique_id=1807272712]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DayModLabel" type="Label" parent="." unique_id=1178004976]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DayTimerLabel" type="Label" parent="." unique_id=2093865677]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GoldLabel" type="Label" parent="." unique_id=1736818933]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SHOP"
+
+[node name="ComboLabel" type="Label" parent="." unique_id=1240979702]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SHOP"
+
+[node name="LevelLabel" type="Label" parent="." unique_id=1070724270]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PrepsLabel" type="Label" parent="." unique_id=1882662065]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RestockButton" type="Button" parent="." unique_id=647947499]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restock 50g"
+
+[node name="UpgradesButton" type="Button" parent="." unique_id=1243252575]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Upgrades"

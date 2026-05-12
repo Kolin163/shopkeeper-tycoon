@@ -1,26 +1,9 @@
 [gd_resource type="Resource" script_class="GameData" format=3 uid="uid://dt43y7tyo2p5d"]
 
 [ext_resource type="Script" uid="uid://sf4pmeo3kilj" path="res://src/data/item_def.gd" id="1_vllua"]
-[ext_resource type="Resource" uid="uid://cmie5jbxxn3nf" path="res://data/items/band_of_elvenskin.tres" id="2_l84in"]
 [ext_resource type="Script" uid="uid://c81sjw2wvv7jk" path="res://src/data/recipe_def.gd" id="2_r34r7"]
-[ext_resource type="Resource" uid="uid://bhrpsoybkm7bw" path="res://data/items/belt_of_strength.tres" id="3_iwpjk"]
 [ext_resource type="Script" uid="uid://cm6drmyrd73jf" path="res://src/data/game_data.gd" id="3_k2o1c"]
-[ext_resource type="Resource" uid="uid://dh3b50r4u6dt6" path="res://data/items/boots.tres" id="4_e6v3s"]
-[ext_resource type="Resource" uid="uid://b1ll7ngfyodbi" path="res://data/items/gloves.tres" id="5_53n6h"]
-[ext_resource type="Resource" uid="uid://dyrgqktgo6p2k" path="res://data/items/iron_branch.tres" id="6_jxnqk"]
-[ext_resource type="Resource" uid="uid://c4ae5qc4uumds" path="res://data/items/magic_stick.tres" id="7_b1qmr"]
-[ext_resource type="Resource" uid="uid://bqr0srvf8yy77" path="res://data/items/magic_wand.tres" id="8_r4uws"]
-[ext_resource type="Resource" uid="uid://bmxtwq3mp8tdo" path="res://data/items/power_treads.tres" id="9_4ls4r"]
-[ext_resource type="Resource" uid="uid://cc0r2ery4bh2x" path="res://data/items/ring_of_regen.tres" id="10_xbtbc"]
-[ext_resource type="Resource" uid="uid://cp1ehigt82q3g" path="res://data/items/robe_of_magi.tres" id="11_028tp"]
-[ext_resource type="Resource" uid="uid://dd4q3eats5xqb" path="res://data/items/tranquil_boots.tres" id="12_t72jb"]
-[ext_resource type="Resource" uid="uid://ckqrc043qxmd4" path="res://data/items/wind_lace.tres" id="13_4dg1r"]
-[ext_resource type="Resource" uid="uid://e60xutkgckr0" path="res://data/recipes/magic_wand.tres" id="15_1qin8"]
-[ext_resource type="Resource" uid="uid://butg8albqw7ok" path="res://data/recipes/power_treads.tres" id="16_5vau3"]
-[ext_resource type="Resource" uid="uid://deucp04xuk4cw" path="res://data/recipes/tranquil_boots.tres" id="17_nx75h"]
 
 [resource]
 script = ExtResource("3_k2o1c")
-items = Array[ExtResource("1_vllua")]([ExtResource("2_l84in"), ExtResource("3_iwpjk"), ExtResource("4_e6v3s"), ExtResource("5_53n6h"), ExtResource("6_jxnqk"), ExtResource("7_b1qmr"), ExtResource("8_r4uws"), ExtResource("9_4ls4r"), ExtResource("10_xbtbc"), ExtResource("11_028tp"), ExtResource("12_t72jb"), ExtResource("13_4dg1r")])
-recipes = Array[ExtResource("2_r34r7")]([ExtResource("15_1qin8"), ExtResource("16_5vau3"), ExtResource("17_nx75h")])
 metadata/_custom_type_script = "uid://cm6drmyrd73jf"

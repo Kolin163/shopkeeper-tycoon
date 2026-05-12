@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cmgifgn5w3tbp"]
+
+[ext_resource type="Script" uid="uid://byo5wgl6cknrc" path="res://src/ui/modules/log_ui.gd" id="1_se2fk"]
+
+[node name="LogUI" type="PanelContainer" unique_id=608511674]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_se2fk")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1605654723]
+layout_mode = 2
+
+[node name="Lines" type="VBoxContainer" parent="MarginContainer" unique_id=934088717]
+unique_name_in_owner = true
+layout_mode = 2

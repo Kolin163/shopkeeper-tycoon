@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cpki05wgnwx6r"]
+
+[ext_resource type="Script" uid="uid://c1iwl4avj5ctu" path="res://src/ui/modules/upgrades_modal.gd" id="1_fjni4"]
+
+[node name="UpgradesPanel" type="PanelContainer" unique_id=114693766]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fjni4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1157305167]
+layout_mode = 2
+
+[node name="BtnMoreTables" type="Button" parent="VBoxContainer" unique_id=601750460]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BtnMoreStock" type="Button" parent="VBoxContainer" unique_id=1579197010]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BtnReplenish" type="Button" parent="VBoxContainer" unique_id=1176227618]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BtnMorePatience" type="Button" parent="VBoxContainer" unique_id=130492739]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BtnCloseUpgrades" type="Button" parent="VBoxContainer" unique_id=1209819378]
+unique_name_in_owner = true
+layout_mode = 2

@@ -73,6 +73,14 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_41mtt")
 
+[node name="FavButton" type="Button" parent="." unique_id=562952492]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+toggle_mode = true
+text = "★"
+
 [node name="HintOverlay" type="ColorRect" parent="." unique_id=1200728466]
 visible = false
 layout_mode = 1

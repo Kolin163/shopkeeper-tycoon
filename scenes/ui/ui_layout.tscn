@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://i66l2k6qnqyl"]
+
+[node name="UILayout" type="Control" unique_id=857107317]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1702477702]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="MainVBox" type="VBoxContainer" parent="Margin" unique_id=751257620]
+layout_mode = 2
+
+[node name="TopSlot" type="PanelContainer" parent="Margin/MainVBox" unique_id=1367969798]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="OrderSlot" type="PanelContainer" parent="Margin/MainVBox" unique_id=885596874]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MainSplit" type="HSplitContainer" parent="Margin/MainVBox" unique_id=1073814680]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShelfSlot" type="PanelContainer" parent="Margin/MainVBox/MainSplit" unique_id=1036433361]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightSplit" type="VSplitContainer" parent="Margin/MainVBox/MainSplit" unique_id=1322415814]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WorkbenchSlot" type="PanelContainer" parent="Margin/MainVBox/MainSplit/RightSplit" unique_id=173536268]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LogSlot" type="PanelContainer" parent="Margin/MainVBox/MainSplit/RightSplit" unique_id=446397114]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2

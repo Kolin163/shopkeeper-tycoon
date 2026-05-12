@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bp607l5g7dxgl"]
+
+[ext_resource type="Script" uid="uid://c71socukrjkbo" path="res://src/ui/modules/order_ui.gd" id="1_gghmk"]
+
+[node name="OrderUI" type="HBoxContainer" unique_id=151963353]
+script = ExtResource("1_gghmk")
+
+[node name="QueueLabel" type="Label" parent="." unique_id=1315289460]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="OrderLabel" type="Label" parent="." unique_id=1677065966]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SHOP"
+
+[node name="HintLabel" type="Label" parent="." unique_id=926094733]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NeedLabel" type="Label" parent="." unique_id=1653389115]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SHOP"
+
+[node name="PatienceBar" type="ProgressBar" parent="." unique_id=1732942926]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+
+[node name="MoodLabel" type="Label" parent="." unique_id=1046533195]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="." unique_id=873997697]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SHOP"
+
+[node name="ClearButton" type="Button" parent="." unique_id=685267752]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Clear table"
+
+[node name="BargainRow" type="HBoxContainer" parent="." unique_id=750474119]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="BargainLabel" type="Label" parent="BargainRow" unique_id=795898918]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Discount?"
+
+[node name="BtnDeal" type="Button" parent="BargainRow" unique_id=560940787]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Yes"
+
+[node name="BtnNoDeal" type="Button" parent="BargainRow" unique_id=510657405]
+unique_name_in_owner = true
+layout_mode = 2
+text = "No"

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ci02gauybqcfx"]
+
+[ext_resource type="Script" uid="uid://dkyr6ef3phcqd" path="res://src/ui/modules/workbench_ui.gd" id="1_25ila"]
+[ext_resource type="PackedScene" uid="uid://ejsol612hd44" path="res://scenes/ui/craft_area.tscn" id="1_u23oe"]
+
+[node name="WorkbenchUI" type="Control" unique_id=143630694]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 520.0
+offset_bottom = 180.0
+script = ExtResource("1_25ila")
+
+[node name="CraftRow" type="HBoxContainer" parent="." unique_id=868208871]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CraftArea" parent="CraftRow" unique_id=363475850 instance=ExtResource("1_u23oe")]
+layout_mode = 2

@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b5jhdauwkc6g8"]
+
+[ext_resource type="Script" uid="uid://dy660x7nunnlj" path="res://src/ui/modules/shelf_catalog_ui.gd" id="1_diw5p"]
+
+[node name="ShelfCatalogUI" type="VBoxContainer" unique_id=844069208]
+size_flags_vertical = 3
+script = ExtResource("1_diw5p")
+
+[node name="ShelfHeader" type="HBoxContainer" parent="." unique_id=415508279]
+layout_mode = 2
+
+[node name="SearchEdit" type="LineEdit" parent="ShelfHeader" unique_id=2020657074]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Search..."
+
+[node name="CategoryOption" type="OptionButton" parent="ShelfHeader" unique_id=832583719]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "Base"
+popup/item_1/id = 1
+popup/item_2/text = "Scrolls"
+popup/item_2/id = 2
+
+[node name="FavOnlyButton" type="Button" parent="ShelfHeader" unique_id=1181232015]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "★"
+
+[node name="ShelfScroll" type="ScrollContainer" parent="." unique_id=642881137]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShelfGrid" type="GridContainer" parent="ShelfScroll" unique_id=1709317946]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 8

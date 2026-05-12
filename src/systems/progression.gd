@@ -50,11 +50,11 @@ func rebuild_unlocked_orders() -> void:
 				unlocked_orders.append(id)
 
 func _is_unlocked_item(id: StringName) -> bool:
-	var it := DataManager.get_item(id)
+	var it = DataManager.get_item(id)
 	return it != null and it.tier <= shop_level
 
 func _is_base_available(id: StringName) -> bool:
-	var it := DataManager.get_item(id)
+	var it = DataManager.get_item(id)
 	return it != null and (it.type == &"base" or it.type == &"recipe_scroll") and it.tier <= shop_level
 
 func _can_craft_at_level(id: StringName) -> bool:
@@ -68,7 +68,7 @@ func _can_craft_at_level_impl(id: StringName, stack: Array[StringName]) -> bool:
 		_craftable_cache[id] = false
 		return false
 
-	var it := DataManager.get_item(id)
+	var it = DataManager.get_item(id)
 	if it == null or it.tier > shop_level:
 		_craftable_cache[id] = false
 		return false
@@ -78,7 +78,7 @@ func _can_craft_at_level_impl(id: StringName, stack: Array[StringName]) -> bool:
 		_craftable_cache[id] = ok
 		return ok
 
-	var r := DataManager.get_recipe(id)
+	var r = DataManager.get_recipe(id)
 	if r == null:
 		_craftable_cache[id] = false
 		return false

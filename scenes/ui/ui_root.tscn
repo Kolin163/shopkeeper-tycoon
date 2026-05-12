@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://piv5dy4lp5vt"]
+
+[ext_resource type="Script" uid="uid://c27jm5cleuxda" path="res://src/ui/ui_root.gd" id="1_w6j4g"]
+[ext_resource type="PackedScene" uid="uid://i66l2k6qnqyl" path="res://scenes/ui/ui_layout.tscn" id="2_yoora"]
+[ext_resource type="PackedScene" uid="uid://b5jhdauwkc6g8" path="res://scenes/ui/modules/shelf_catalog_ui.tscn" id="3_eohe1"]
+[ext_resource type="PackedScene" uid="uid://ci02gauybqcfx" path="res://scenes/ui/modules/workbench_ui.tscn" id="4_t1f3t"]
+[ext_resource type="PackedScene" uid="uid://bvwkmelu30b6r" path="res://scenes/ui/modules/top_bar_ui.tscn" id="5_t1f3t"]
+[ext_resource type="PackedScene" uid="uid://bp607l5g7dxgl" path="res://scenes/ui/modules/order_ui.tscn" id="6_bn0b7"]
+[ext_resource type="PackedScene" uid="uid://d3c0w8vllatan" path="res://scenes/ui/modules/day_break_modal.tscn" id="7_v233x"]
+[ext_resource type="PackedScene" uid="uid://3qs8445drbhu" path="res://scenes/ui/modules/end_day_modal.tscn" id="8_7o2ne"]
+[ext_resource type="PackedScene" uid="uid://cpki05wgnwx6r" path="res://scenes/ui/modules/upgrades_modal.tscn" id="9_gluwf"]
+[ext_resource type="PackedScene" uid="uid://cmgifgn5w3tbp" path="res://scenes/ui/modules/log_ui.tscn" id="10_7o2ne"]
+
+[node name="UIRoot" type="Control" unique_id=1343698938]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w6j4g")
+layout_scene = ExtResource("2_yoora")
+shelf_scene = ExtResource("3_eohe1")
+workbench_scene = ExtResource("4_t1f3t")
+top_bar_scene = ExtResource("5_t1f3t")
+order_scene = ExtResource("6_bn0b7")
+break_modal_scene = ExtResource("7_v233x")
+end_modal_scene = ExtResource("8_7o2ne")
+upgrades_modal_scene = ExtResource("9_gluwf")
+log_scene = ExtResource("10_7o2ne")
+
+[node name="LayoutHost" type="Control" parent="." unique_id=1048166128]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ModalHost" type="Control" parent="." unique_id=505594716]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

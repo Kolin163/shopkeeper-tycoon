@@ -3,15 +3,17 @@ class_name ShelfItem
 
 @export var item: ItemDef
 enum HintState { NONE, REQUIRED, VARIANT }
-
+signal fav_toggled(item_id: StringName, is_fav: bool)
 var hint_state: int = HintState.NONE
 @onready var hint_overlay: ColorRect = $HintOverlay
 @onready var bg: ColorRect = $Bg
 @onready var icon: TextureRect = $Icon
 @onready var name_label: Label = $NameLabel
 @onready var count_label: Label = $CountLabel
+@onready var fav_button: Button = $FavButton
 
 func _ready() -> void:
+	fav_button.toggled.connect(_on_fav_toggled)
 	_apply_view()
 
 func refresh() -> void:
@@ -54,7 +56,7 @@ func _apply_view() -> void:
 		modulate = Color.WHITE
 		return
 
-	var cnt := DataManager.get_stock(item.id)
+	var cnt = DataManager.get_stock(item.id)
 	count_label.visible = true
 	count_label.text = str(cnt)
 
@@ -122,3 +124,16 @@ func _make_drag_preview() -> Control:
 		p.add_child(l)
 
 	return p
+
+func set_fav(v: bool) -> void:
+	fav_button.button_pressed = v
+	_update_fav_visual()
+
+func _on_fav_toggled(v: bool) -> void:
+	_update_fav_visual()
+	if item != null:
+		fav_toggled.emit(item.id, v)
+
+func _update_fav_visual() -> void:
+	# простая индикация
+	fav_button.modulate = Color(1, 0.9, 0.2, 1) if fav_button.button_pressed else Color(1, 1, 1, 0.5)
